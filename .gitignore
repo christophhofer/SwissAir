@@ -3,6 +3,7 @@ archive/
 old/
 private/
 temp/
+*.Rcheck
 
 # Mac files to exclude
 .DS_Store

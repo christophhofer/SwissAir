@@ -1,0 +1,31 @@
+#!/bin/bash
+# ---------------------------------------
+# 2023-02-06 hofc
+
+read -p "Press [Enter] start building IDPmisc package"
+
+pckg=SwissAir
+version=_1.1.6
+
+cd /Users/hofc/gitrepos/idp/$pckg
+
+
+echo Removing outdated directories and files -----------
+
+if [ -d "$pckg.Rcheck" ] ;
+then rm -fR "$pckg.Rcheck" ;
+fi
+
+if [ -f "$pckg$version.tar.gz" ] ;
+then rm "$pckg$version.tar.gz" ;
+fi
+
+R CMD build --resave-data --resave-data $pckg
+
+R CMD check --as-cran $pckg$version.tar.gz
+
+read -p "Press [Enter] to close this window"
+
+
+unset pckg
+unset version
